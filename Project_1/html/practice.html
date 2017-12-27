@@ -18,7 +18,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         var camera = new THREE.PerspectiveCamera(
-            60,
+            90,
             window.innerWidth/window.innerHeight,
             0.1,
             3000
@@ -39,7 +39,7 @@
         
         scene.add(boxmesh);
 
-        var plane = new THREE.PlaneGeometry(40,40);
+        var plane = new THREE.PlaneGeometry(40,80);
         var planeMaterial = new THREE.MeshBasicMaterial({
             color: 0xff2211
         });
@@ -51,6 +51,19 @@
         planeMesh.position.z = 0;
 
         scene.add(planeMesh);
+
+        var sphere = new THREE.SphereGeometry(5, 20, 20);
+        var sphereMaterial = new THREE.MeshBasicMaterial({
+            color: 0x0033ee,
+            wireframe: true
+        });
+        var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
+        
+        sphereMesh.position.x = 20;
+        sphereMesh.position.y = 5;
+        sphereMesh.position.z = 30;
+
+        scene.add(sphereMesh);
 
         camera.position.x = -40;
         camera.position.y = 20;
