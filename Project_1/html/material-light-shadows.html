@@ -30,7 +30,7 @@
         plane.position.x = 15;
         plane.position.y = 0;
         plane.position.z = 0;
-        
+        plane.receiveShadow = true;
         scene.add(plane);
 
         let cubeGeometry = new THREE.CubeGeometry(4,4,4);
@@ -42,7 +42,7 @@
         cube.position.x = -4;
         cube.position.y = 3;
         cube.position.z = 0;
-        
+        cube.castShadow = true;
         scene.add(cube);
 
         let spehereGeometry = new THREE.SphereGeometry(4,20,20);
@@ -53,7 +53,7 @@
         sphere.position.x = 20;
         sphere.position.y = 4;
         sphere.position.z = 2;
-
+        sphere.castShadow = true;
         scene.add(sphere);
 
         camera.position.x = -30;
@@ -64,7 +64,9 @@
         var spotLight = new THREE.SpotLight( 0xffeeee );
         spotLight.position.set( -40, 60, -10 );
         scene.add( spotLight );
-
+        spotLight.castShadow = true;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMapType = THREE.PCFSoftShadowMap;
         document.getElementById('WebGL-output').appendChild(renderer.domElement);
         renderer.render(scene, camera);
     </script>
