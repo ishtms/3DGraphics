@@ -46,7 +46,7 @@
         scene.add(cube);
 
         let spehereGeometry = new THREE.SphereGeometry(4,20,20);
-        let sphereMaterial = new THREE.MeshPhongMaterial({
+        let sphereMaterial = new THREE.MeshStandardMaterial({
             color: 0x7777ff
         });
         let sphere = new THREE.Mesh(spehereGeometry, sphereMaterial);
@@ -63,10 +63,12 @@
 
         var spotLight = new THREE.SpotLight( 0xffeeee );
         spotLight.position.set( -40, 60, -10 );
-        scene.add( spotLight );
+        spotLight.shadow.mapSize.height = 2048;
         spotLight.castShadow = true;
+        scene.add( spotLight );
+
         renderer.shadowMap.enabled = true;
-        renderer.shadowMapType = THREE.PCFSoftShadowMap;
+
         document.getElementById('WebGL-output').appendChild(renderer.domElement);
         renderer.render(scene, camera);
     </script>

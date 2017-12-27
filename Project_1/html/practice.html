@@ -27,20 +27,19 @@
         scene.add(axis);
        
         var box = new THREE.CubeGeometry(10,10,10);
-        var boxMaterial = new THREE.MeshBasicMaterial({
-            color: 0x003344,
-            wireframe: true
+        var boxMaterial = new THREE.MeshStandardMaterial({
+            color: 0x003344
         });
         var boxmesh = new THREE.Mesh(box, boxMaterial);
         
         boxmesh.position.x = 20;
         boxmesh.position.y = 5;
         boxmesh.position.z = 10;
-        
+        boxmesh.castShadow = true;
         scene.add(boxmesh);
 
         var plane = new THREE.PlaneGeometry(40,80);
-        var planeMaterial = new THREE.MeshBasicMaterial({
+        var planeMaterial = new THREE.MeshStandardMaterial({
             color: 0xff2211
         });
         var planeMesh = new THREE.Mesh(plane, planeMaterial);
@@ -49,26 +48,33 @@
         planeMesh.position.x = 20;
         planeMesh.position.y = 0;
         planeMesh.position.z = 0;
-
+        planeMesh.receiveShadow = true;
         scene.add(planeMesh);
 
         var sphere = new THREE.SphereGeometry(5, 20, 20);
-        var sphereMaterial = new THREE.MeshBasicMaterial({
-            color: 0x0033ee,
-            wireframe: true
+        var sphereMaterial = new THREE.MeshStandardMaterial({
+            color: 0x0033ee
         });
         var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
         
         sphereMesh.position.x = 20;
         sphereMesh.position.y = 5;
         sphereMesh.position.z = 30;
-
+        sphereMesh.castShadow = true;
         scene.add(sphereMesh);
 
         camera.position.x = -40;
         camera.position.y = 20;
         camera.position.z = 40;
         camera.lookAt(scene.position);
+
+        let spotLight = new THREE.SpotLight(0xffffff);
+        spotLight.position.set(-40, 50, -10);
+        spotLight.castShadow = true;
+
+        scene.add(spotLight);
+
+        renderer.shadowMap.enabled = true;
 
         document.getElementById('app').appendChild(renderer.domElement);
         renderer.render(scene, camera);
